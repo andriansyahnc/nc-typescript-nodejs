@@ -1,15 +1,16 @@
+import { Document, Types } from "mongoose";
 import { ModelTimestamp } from '../common/models'
 
-export interface IChecklist {
-    _id?: String,
-    type: String,
-    object_domain: String,
-    object_id: String,
-    description: String,
-    is_completed: Boolean,
+export interface IChecklist extends Document {
+    _id: Types.ObjectId,
+    type: string,
+    object_domain: string,
+    object_id: string,
+    description: string,
+    is_completed: boolean,
     due: Date|null,
-    task_id: String,
-    urgency: Number,
-    last_update_by: String,
+    task_id: string,
+    urgency: number|null,
+    last_update_by: string,
     timestamp: ModelTimestamp,
 }

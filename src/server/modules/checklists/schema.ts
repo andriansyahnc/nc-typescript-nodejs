@@ -1,21 +1,34 @@
-import * as mongoose from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { ModelTimestamp } from '../common/models';
+import { IChecklist } from './models';
 
-const Schema = mongoose.Schema;
-const schema = new Schema({
-    type: String,
-    object_domain: String,
-    object_id: String,
-    description: String,
+const checklistSchema = new Schema({
+    type: {
+        type: String
+    },
+    object_domain: {
+        type: String
+    },
+    object_id: {
+        type: String
+    },
+    description: {
+        type: String
+    },
     is_completed: {
         type: Boolean,
         default: false,
     },
     due: Date,
-    task_id: String,
+    task_id: {
+        type: String
+    },
     urgency: Number,
-    last_update_by: String,
+    last_update_by: {
+        type: String
+    },
     timestamp: ModelTimestamp
 })
 
-export default mongoose.model('checklists', schema);
+const ChecklistSchema = model<IChecklist>('checklists', checklistSchema);
+export default ChecklistSchema;

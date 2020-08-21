@@ -1,8 +1,7 @@
 import { Request, Response } from 'express'
+import { mongoError, successResponse, insufficientParameters, failureResponse } from '../modules/common/services'
 import { IChecklist } from '../modules/checklists/models'
 import ChecklistService from '../modules/checklists/services'
-import { mongoError, successResponse, insufficientParameters, failureResponse } from '../modules/common/services';
-import { mongo } from 'mongoose';
 
 export class ChecklistController {
     private checklist_service: ChecklistService = new ChecklistService();
@@ -10,7 +9,7 @@ export class ChecklistController {
     public create_checklist(req: Request, res: Response) {
         if (req.body.type && req.body.object_domain && req.body.object_id && req.body.description
             && req.body.task_id) {
-            const checklist_params: IChecklist = {
+            const checklist_params = {
                 type: req.body.type,
                 object_domain: req.body.object_domain,
                 object_id: req.body.object_id,
@@ -59,7 +58,7 @@ export class ChecklistController {
                 if (err) {
                     mongoError(err, res);
                 } else if (checklist_data) {
-                    const checklist_params: IChecklist = {
+                    const checklist_params = {
                         _id: req.params.id,
                         type: checklist_data.type,
                         object_domain: checklist_data.object_domain,
@@ -99,7 +98,7 @@ export class ChecklistController {
                 } else if (delete_details.deletedCount !== 0) {
                     successResponse(null, null, null, res);
                 } else {
-                    failureResponse('invalid user', null, res);
+                    failureResponse('invalid checklist', null, res);
                 }
             });
         } else {

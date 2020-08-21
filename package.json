@@ -1,12 +1,12 @@
 {
   "name": "rest-api",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "dist/server/index.js",
   "scripts": {
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node .",
-    "test": "jest ",
+    "test": "jest --verbose ",
     "start:dev": "nodemon"
   },
   "keywords": [],
