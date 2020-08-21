@@ -11,5 +11,5 @@ export interface IChecklist {
     task_id: String,
     urgency: Number,
     last_update_by: String,
-    timestamp: ModelTimestamp[],
+    timestamp: ModelTimestamp,
 }

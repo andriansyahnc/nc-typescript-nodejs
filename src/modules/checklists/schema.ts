@@ -15,7 +15,7 @@ const schema = new Schema({
     task_id: String,
     urgency: Number,
     last_update_by: String,
-    timestamp: [ModelTimestamp]
+    timestamp: ModelTimestamp
 })
 
 export default mongoose.model('checklists', schema);

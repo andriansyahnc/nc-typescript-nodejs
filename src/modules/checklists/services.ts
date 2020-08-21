@@ -20,7 +20,7 @@ export default class ChecklistService {
         checklist.findOneAndUpdate(query, checklist_params, callback);
     }
 
-    public deleteChecklist(id: Number, callback: any) {
+    public deleteChecklist(id: String, callback: any) {
         const query = { _id: id };
         checklist.deleteOne(query, callback);
     }
