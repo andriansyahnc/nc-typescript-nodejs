@@ -16,7 +16,7 @@ export default class ChecklistService {
     }
 
     public updateChecklist(checklist_params: IChecklist, callback: any) {
-        const query = { id: checklist_params._id }
+        const query = { _id: checklist_params._id }
         checklist.findOneAndUpdate(query, checklist_params, callback);
     }
 

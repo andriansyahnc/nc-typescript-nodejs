@@ -59,7 +59,33 @@ export class ChecklistController {
                 if (err) {
                     mongoError(err, res);
                 } else if (checklist_data) {
-
+                    const checklist_params: IChecklist = {
+                        _id: req.params.id,
+                        type: checklist_data.type,
+                        object_domain: checklist_data.object_domain,
+                        object_id: req.body.object_id ? req.body.object_id : checklist_data.object_id,
+                        description: req.body.description ? req.body.description : checklist_data.description,
+                        is_completed: req.body.is_completed ? req.body.is_completed : checklist_data.is_completed,
+                        due: req.body.due ? req.body.due : checklist_data.due,
+                        task_id: req.body.task_id ? req.body.task_id : checklist_data.task_id,
+                        last_update_by: req.body.last_update_by ? req.body.last_update_by : checklist_data.last_update_by,
+                        urgency: req.body.urgency ? req.body.urgency : checklist_data.urgency,
+                        timestamp: {
+                            created_at: checklist_data.timestamp.created_at,
+                            update_at: new Date(Date.now()),
+                            completed_at: checklist_data.is_completed == false && req.body.is_completed == true ? new Date(Date.now()) : null,
+                        }
+                    }
+                    this.checklist_service.updateChecklist(checklist_params, (err: any) => {
+                        if (err) {
+                            mongoError(err, res);
+                        } else {
+                            successResponse(null, null, checklist_params, res);
+                        }
+                    })
+                }
+                else {
+                    failureResponse('invalid checklist', null, res);
                 }
             })
         }
