@@ -1,4 +1,3 @@
-import { IChecklist } from "./models";
 import ChecklistSchema from "./schema"
 
 export default class ChecklistService {
