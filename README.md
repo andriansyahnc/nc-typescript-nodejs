@@ -11,7 +11,17 @@ Install the dependencies
 npm install
 ```
 
-Run the application
+Run the application in development
 ```sh
-npm start
+npm run start:dev
+```
+
+Build and Run the application
+```sh
+npm run start
+```
+
+Run unit tests
+```sh
+npm test
 ```
